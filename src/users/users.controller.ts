@@ -1,4 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { ApiBody } from '@nestjs/swagger';
+import { UserDTO } from './dtos/user.dto';
 import { IUser } from './interfaces/user.interface';
 import { UsersService } from './users.service';
 
@@ -12,7 +14,8 @@ export class UsersController {
   }
 
   @Post()
-  create(@Body() user: IUser): IUser {
+  @ApiBody({ type: UserDTO })
+  create(@Body() user: UserDTO): IUser {
     return this.usersService.create(user);
   }
 }
