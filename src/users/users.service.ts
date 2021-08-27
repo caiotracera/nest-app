@@ -1,0 +1,17 @@
+import { Injectable } from '@nestjs/common';
+import { IUser } from './interfaces/user.interface';
+
+@Injectable()
+export class UsersService {
+  private users: IUser[] = [];
+
+  findAll(): IUser[] {
+    return this.users;
+  }
+
+  create(user: IUser): IUser {
+    this.users.push(user);
+
+    return user;
+  }
+}
